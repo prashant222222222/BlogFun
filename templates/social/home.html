@@ -1,0 +1,17 @@
+{% extends 'base.html'%} 
+{% block content %} 
+<h3 style="color:green;">HOME</h3>
+<form method="post" action='/post/' enctype="multipart/form-data"> 
+{% comment %} /post/ because it should go to absolute url rather than relative url {% endcomment %}
+{% csrf_token %}
+{{ post_form }}
+<button type="submit" class='btn waves-effect'>Post</button>
+</form>
+<ul>
+{% for post in posts %} 
+{% include 'social/components/post.html' %}
+
+{% endfor %}
+</ul>
+
+{% endblock%}

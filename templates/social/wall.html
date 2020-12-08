@@ -1,0 +1,12 @@
+{% extends 'base.html'%} 
+{% block content %} 
+<h3 style="color:green;">FEEDS</h3>
+<ul>
+{% for post in posts %} 
+{% include 'social/components/post.html' %}
+
+{% endfor %}
+</ul>
+
+
+{% endblock%}

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlogFun</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <style>
+      html {
+        background: url("/static/12818.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      h1 {
+        color: red;
+      }
+      .card-title {
+        text-transform: uppercase;
+      }
+    </style>
+    {% block head %} {% endblock %}
+  </head>
+  <body>
+    <nav style="margin-bottom: 3rem; background-color: #4251f5; height: 10vh">
+      <div class="nav-wrapper" style="padding: 25px">
+        <a href="/" class="brand-logo">BlogFun</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {% if user.is_authenticated %}
+          <li>
+            <a href="/home">
+              Hello, {{ request.user.first_name }} {{request.user.last_name}}</a
+            >
+          </li>
+          <li>
+            <a href="/home"> Home </a>
+          </li>
+          <li>Add Friend</li>
+          <li><a href="/">Feeds</a></li>
+          <li><a href="/auth/logout">LogOut</a></li>
+          {% else %}
+          <li><a href="/auth/login">LogIn</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container">{% block content %} {% endblock %}</div>
+    {% block footer %} {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/static/social/social.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".modal");
+        var instances = M.Modal.init(elems, {});
+      });
+    </script>
+  </body>
+</html>
